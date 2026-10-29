@@ -92,3 +92,16 @@
 .card:hover .arrow {
   transform: translateX(3px);
 }
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .section {
+    min-height: 0;
+    padding-bottom: 8px;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+}

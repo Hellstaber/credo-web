@@ -33,7 +33,8 @@
   /* Layout: the Figma frame is 1440 wide with 124px side gutters (1192 content) */
   --page-max-width: 1440px;
   --page-gutter: 124px;
-  --content-width: 1192px;
+  /* 1192px on desktop; shrinks to the padded parent on narrower screens */
+  --content-width: min(1192px, 100%);
   /* Gutter that keeps content at --content-width, centered, on screens wider than 1440 */
   --page-inline-padding: max(var(--page-gutter), calc((100% - var(--content-width)) / 2));
 
@@ -87,6 +88,19 @@
 @media (max-width: 1280px) {
   :root {
     --page-gutter: 32px;
+  }
+}
+
+/* Tablet / mobile gutters */
+@media (max-width: 1024px) {
+  :root {
+    --page-gutter: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --page-gutter: 16px;
   }
 }
 

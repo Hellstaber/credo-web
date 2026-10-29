@@ -270,3 +270,44 @@ select.input {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .section {
+    padding-block: 56px;
+  }
+
+  .box {
+    flex-direction: column;
+  }
+
+  .divider {
+    display: none;
+  }
+
+  .form {
+    border-bottom: 1px solid var(--alpha-8);
+  }
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .form,
+  .results {
+    padding: 24px 20px;
+  }
+
+  .headlineValue {
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .cta {
+    width: 100%;
+  }
+}

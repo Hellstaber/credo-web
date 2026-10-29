@@ -499,3 +499,57 @@
   line-height: 20px;
   letter-spacing: 0.28px;
 }
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .section {
+    height: auto;
+    border-radius: 0;
+  }
+
+  .body {
+    flex-direction: column;
+    height: auto;
+    gap: 24px;
+  }
+
+  .panel {
+    width: 100%;
+  }
+
+  .list {
+    max-height: none;
+  }
+
+  /* The map keeps its 1288px artwork and shows the left part, as the desktop clip does */
+  .map {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+    line-height: 34px;
+    white-space: normal;
+  }
+
+  .inputs {
+    flex-direction: column;
+  }
+
+  .city {
+    width: 100%;
+  }
+
+  .itemAddress {
+    white-space: normal;
+  }
+
+  .filters {
+    flex-wrap: wrap;
+  }
+}

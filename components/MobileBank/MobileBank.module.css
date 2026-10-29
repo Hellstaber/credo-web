@@ -228,3 +228,56 @@
   mask-position: 216.718px -27.131px;
   mask-size: 642px 642px;
 }
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 40px;
+    padding-block: 48px;
+  }
+
+  .phones {
+    align-self: center;
+  }
+
+  .downloadText {
+    width: auto;
+  }
+
+  .features li {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    margin-top: 24px;
+  }
+
+  .title {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  .title br {
+    display: none;
+  }
+}
+
+/* The 490px phone mockup is scaled down to fit narrow screens */
+@media (max-width: 540px) {
+  .phones {
+    transform: scale(0.7);
+    transform-origin: top center;
+    margin-bottom: -109px;
+  }
+}
+
+@media (max-width: 480px) {
+  .download {
+    flex-wrap: wrap;
+  }
+}

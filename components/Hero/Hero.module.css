@@ -129,3 +129,37 @@
   outline: 2px solid var(--secondary-500);
   outline-offset: 2px;
 }
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .hero {
+    padding-block: 32px;
+    border-radius: 0;
+  }
+
+  .slide {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  .media {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 584 / 440;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+
+  .copy {
+    width: 100%;
+    font-size: 16px;
+  }
+}

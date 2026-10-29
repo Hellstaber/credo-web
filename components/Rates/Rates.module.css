@@ -187,3 +187,25 @@
 .all {
   padding-inline: 24px;
 }
+
+/* ---------- Tablet / mobile ---------- */
+
+@media (max-width: 1024px) {
+  .cards {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+    line-height: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .head {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}

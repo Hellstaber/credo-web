@@ -24,6 +24,8 @@ const NAV_ITEMS: NavItem[] = [
 export default function Header() {
   const [activeId, setActiveId] = useState("personal");
   const [lang, setLang] = useState<"EN" | "KA">("EN");
+  // Tablet/mobile menu (≤1024px); not in the Figma design, kept in the site's existing styles
+  const [mobileOpen, setMobileOpen] = useState(false);
   const nav = useDesktopNavigationMotion();
   const { value, visualValue, close } = nav;
 
@@ -156,7 +158,39 @@ export default function Header() {
           <img src="/icons/globe.svg" width={20} height={20} alt="" />
           <span>{lang}</span>
         </button>
+        <button
+          className={styles.burger}
+          aria-label={mobileOpen ? "მენიუს დახურვა" : "მენიუს გახსნა"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-menu"
+          onClick={() => setMobileOpen((open) => !open)}
+        >
+          <span data-open={mobileOpen} />
+        </button>
       </div>
+
+      {mobileOpen && (
+        <nav id="mobile-menu" className={styles.mobileMenu} aria-label="მობილური ნავიგაცია">
+          <ul>
+            <li>
+              <a href="/loans">სესხები</a>
+            </li>
+            {NAV_ITEMS.slice(1).map((item) => (
+              <li key={item.id}>
+                <a href="#">{item.label}</a>
+              </li>
+            ))}
+          </ul>
+          <div className={styles.mobileActions}>
+            <Button href="#" variant="secondary" aria-label="ვიდეო ბანკი">
+              ᲕᲘᲓᲔᲝ ᲑᲐᲜᲙᲘ
+            </Button>
+            <Button href="#" variant="primary">
+              MYCREDO
+            </Button>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }
