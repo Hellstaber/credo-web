@@ -1,4 +1,4 @@
-// Ported from Credo-web-variants: components/useDesktopNavigationMotion.js (unchanged).
+// Ported from Credo-web-variants: components/useDesktopNavigationMotion.js (compact breakpoint matches the header burger).
 'use client';
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
@@ -67,7 +67,7 @@ export function useDesktopNavigationMotion() {
     return () => { document.documentElement.style.overflow = previous; };
   }, [presented]);
   useEffect(() => {
-    const compact = window.matchMedia('(max-width:1199px)');
+    const compact = window.matchMedia('(max-width:1279px)');
     const closeOnCompact = () => {
       if (!compact.matches) return;
       clearTimeout(timer.current);

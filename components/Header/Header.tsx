@@ -4,6 +4,7 @@ import { useState } from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import Button from "@/components/Button/Button";
 import { ConsumerPanel } from "./ConsumerMenu";
+import SpaceMenu, { SPACE_LINKS } from "./SpaceMenu";
 import { useDesktopNavigationMotion } from "./useDesktopNavigationMotion";
 import styles from "./Header.module.css";
 
@@ -17,6 +18,7 @@ type NavItem = {
 const NAV_ITEMS: NavItem[] = [
   { id: "personal", label: "სამომხმარებლო", hasMenu: true, menu: "consumer" },
   { id: "business", label: "ბიზნესი", hasMenu: true },
+  { id: "space", label: "სივრცე", hasMenu: true },
   { id: "about", label: "ჩვენ შესახებ", hasMenu: true },
   { id: "contact", label: "კონტაქტი", hasMenu: false },
 ];
@@ -24,7 +26,7 @@ const NAV_ITEMS: NavItem[] = [
 export default function Header() {
   const [activeId, setActiveId] = useState("personal");
   const [lang, setLang] = useState<"EN" | "KA">("EN");
-  // Tablet/mobile menu (≤1024px); not in the Figma design, kept in the site's existing styles
+  // Tablet/mobile menu (≤1279px, where the desktop nav no longer fits); not in the Figma design, kept in the site's existing styles
   const [mobileOpen, setMobileOpen] = useState(false);
   const nav = useDesktopNavigationMotion();
   const { value, visualValue, close } = nav;
@@ -112,6 +114,14 @@ export default function Header() {
                 );
               }
 
+              if (item.id === "space") {
+                return (
+                  <SpaceMenu key={item.id} className={className}>
+                    {content}
+                  </SpaceMenu>
+                );
+              }
+
               return (
                 <li key={item.id} className={styles.navSlot}>
                   <button
@@ -178,6 +188,15 @@ export default function Header() {
             {NAV_ITEMS.slice(1).map((item) => (
               <li key={item.id}>
                 <a href="#">{item.label}</a>
+                {item.id === "space" && (
+                  <ul className={styles.mobileSubmenu}>
+                    {SPACE_LINKS.map((link) => (
+                      <li key={link.label}>
+                        <a href={link.href}>{link.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </li>
             ))}
           </ul>

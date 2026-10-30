@@ -1,3 +1,4 @@
+import Image from "next/image";
 import StoreButtons from "@/components/StoreButtons/StoreButtons";
 import styles from "./MobileBank.module.css";
 
@@ -10,9 +11,28 @@ const FEATURES = [
   "მართე ანგარიშები და ბარათები ერთ სივრცეში",
 ];
 
-export default function MobileBank() {
+type MobileBankProps = {
+  /** Replaces the two layered iPhones with a single image (emigrants page, 1061:2632) */
+  phoneImage?: string;
+  /** Georgian alphabet band drifting right to left behind the section */
+  movingLetters?: boolean;
+};
+
+export default function MobileBank({ phoneImage, movingLetters = false }: MobileBankProps) {
   return (
     <section className={styles.section} aria-labelledby="mobile-bank-title">
+      {movingLetters && (
+        <div className={styles.letters} aria-hidden="true">
+          <div className={styles.lettersTrack}>
+            <div className={styles.lettersTile}>
+              <img src="/images/emigrants/alphabet-band.png" alt="" />
+            </div>
+            <div className={styles.lettersTile}>
+              <img src="/images/emigrants/alphabet-band.png" alt="" />
+            </div>
+          </div>
+        </div>
+      )}
       <div className={styles.inner}>
         <div className={styles.content}>
           <div className={styles.copy}>
@@ -50,31 +70,37 @@ export default function MobileBank() {
           </div>
         </div>
 
-        {/* Two iPhone mockups: layers, masks and offsets as in Figma (frame 869:994) */}
-        <div className={styles.phones} aria-hidden="true">
-          <div className={`${styles.layer} ${styles.p1Fix}`} style={mask("phone1-mask.svg")}>
-            <img src={`${IMG}/phone1-fix.svg`} alt="" />
+        {phoneImage ? (
+          <div className={styles.phoneImage}>
+            <Image src={phoneImage} alt="" fill sizes="490px" className={styles.cover} />
           </div>
-          <div className={`${styles.layer} ${styles.p1Color}`} style={mask("phone1-mask.svg")}>
-            <img className={styles.cover} src={`${IMG}/phone1-color.png`} alt="" />
-          </div>
-          <div className={`${styles.layer} ${styles.p1Screen}`} style={mask("phone1-mask.svg", "phone1-screen-mask.png")}>
-            <img src={`${IMG}/phone1-screen.png`} alt="" />
-          </div>
-          <div className={`${styles.layer} ${styles.p1Frame}`} style={mask("phone1-mask.svg")}>
-            <img className={styles.cover} src={`${IMG}/phone1-frame.png`} alt="" />
-          </div>
+        ) : (
+          /* Two iPhone mockups: layers, masks and offsets as in Figma (frame 869:994) */
+          <div className={styles.phones} aria-hidden="true">
+            <div className={`${styles.layer} ${styles.p1Fix}`} style={mask("phone1-mask.svg")}>
+              <img src={`${IMG}/phone1-fix.svg`} alt="" />
+            </div>
+            <div className={`${styles.layer} ${styles.p1Color}`} style={mask("phone1-mask.svg")}>
+              <img className={styles.cover} src={`${IMG}/phone1-color.png`} alt="" />
+            </div>
+            <div className={`${styles.layer} ${styles.p1Screen}`} style={mask("phone1-mask.svg", "phone1-screen-mask.png")}>
+              <img src={`${IMG}/phone1-screen.png`} alt="" />
+            </div>
+            <div className={`${styles.layer} ${styles.p1Frame}`} style={mask("phone1-mask.svg")}>
+              <img className={styles.cover} src={`${IMG}/phone1-frame.png`} alt="" />
+            </div>
 
-          <div className={`${styles.layer} ${styles.p2Color}`} style={mask("phone2-mask.svg")}>
-            <img className={styles.cover} src={`${IMG}/phone2-color.png`} alt="" />
+            <div className={`${styles.layer} ${styles.p2Color}`} style={mask("phone2-mask.svg")}>
+              <img className={styles.cover} src={`${IMG}/phone2-color.png`} alt="" />
+            </div>
+            <div className={`${styles.layer} ${styles.p2Screen}`} style={mask("phone2-mask.svg", "phone2-screen-mask.png")}>
+              <img src={`${IMG}/phone2-screen.png`} alt="" />
+            </div>
+            <div className={`${styles.layer} ${styles.p2Frame}`} style={mask("phone2-mask.svg")}>
+              <img className={styles.cover} src={`${IMG}/phone2-frame.png`} alt="" />
+            </div>
           </div>
-          <div className={`${styles.layer} ${styles.p2Screen}`} style={mask("phone2-mask.svg", "phone2-screen-mask.png")}>
-            <img src={`${IMG}/phone2-screen.png`} alt="" />
-          </div>
-          <div className={`${styles.layer} ${styles.p2Frame}`} style={mask("phone2-mask.svg")}>
-            <img className={styles.cover} src={`${IMG}/phone2-frame.png`} alt="" />
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );

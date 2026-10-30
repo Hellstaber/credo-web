@@ -4,7 +4,7 @@
   z-index: 30;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   height: 68px;
   padding: 0 var(--page-inline-padding);
   background: var(--background-additional);
@@ -14,7 +14,7 @@
   display: flex;
   flex: 1 0 0;
   align-items: center;
-  gap: 18px;
+  gap: 12px;
   min-width: 1px;
 }
 
@@ -51,7 +51,7 @@
 .navList {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 10px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -75,6 +75,43 @@
   font-weight: 500;
   line-height: 20px;
   white-space: nowrap;
+}
+
+/* "სივრცე" dropdown: hangs under its trigger, styled like the consumer panel's links */
+.spaceSlot {
+  position: relative;
+}
+
+.spaceMenu {
+  position: absolute;
+  /* Slot padding is 12px, so this lines the menu up with the header's bottom edge */
+  top: calc(100% + 12px);
+  left: -16px;
+  min-width: 220px;
+  padding: 20px 24px;
+  border-top: 1px solid var(--nav-line, #e5edf0);
+  border-radius: 0 0 6px 6px;
+  background: #fff;
+  box-shadow: 0 18px 36px -18px #0000001a, 0 30px 45px -30px #23455940;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 180ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms cubic-bezier(0.23, 1, 0.32, 1), visibility 0ms linear 180ms;
+}
+
+.spaceMenu[data-open="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition-delay: 0ms;
+}
+
+.spaceMenu ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .navItem img {
@@ -237,6 +274,21 @@
   line-height: 20px;
 }
 
+.mobileMenu .mobileSubmenu {
+  margin: -8px 0 8px;
+  padding-left: 16px;
+}
+
+.mobileMenu .mobileSubmenu li {
+  border-top: none;
+}
+
+.mobileMenu .mobileSubmenu a {
+  padding: 10px 0;
+  color: #617580;
+  font-size: 14px;
+}
+
 .mobileActions {
   display: flex;
   gap: 12px;
@@ -247,7 +299,7 @@
   flex: 1;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1279px) {
   .nav,
   .actions {
     display: none;
@@ -258,7 +310,7 @@
   }
 }
 
-@media (min-width: 1025px) {
+@media (min-width: 1280px) {
   .mobileMenu {
     display: none;
   }

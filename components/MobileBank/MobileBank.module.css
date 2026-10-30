@@ -5,7 +5,66 @@
   background: var(--alpha-4);
 }
 
+/* Moving alphabet band (emigrants page): 20% opacity as in Figma, full section width, 154.55% tall */
+.section:has(.letters) {
+  position: relative;
+  overflow: hidden;
+}
+
+.letters {
+  position: absolute;
+  inset: 0;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.lettersTrack {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: flex;
+  width: 217.6%;
+  translate: 0 -50%;
+  animation: lettersDrift 120s linear infinite;
+}
+
+/* Tile = band + one spare column gap (8 columns at the band's 272px pitch), so the seam keeps the rhythm */
+.lettersTile {
+  flex: 0 0 50%;
+  padding-right: 4.044%; /* of the track, i.e. 8.8% of the section */
+}
+
+.lettersTile img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes lettersDrift {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lettersTrack {
+    animation: none;
+  }
+}
+
+.phoneImage {
+  position: relative;
+  flex-shrink: 0;
+  width: 490px;
+  height: 363px;
+}
+
+.cover {
+  object-fit: cover;
+}
+
 .inner {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -232,6 +291,13 @@
 /* ---------- Tablet / mobile ---------- */
 
 @media (max-width: 1024px) {
+  .phoneImage {
+    width: min(490px, 100%);
+    height: auto;
+    aspect-ratio: 490 / 363;
+    margin-inline: auto;
+  }
+
   .inner {
     flex-direction: column;
     align-items: stretch;

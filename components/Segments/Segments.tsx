@@ -21,14 +21,14 @@ const SEGMENTS: Segment[] = [
     description: "ბანკი მსოფლიოს ნებისმიერი წერტილიდან",
     icon: "/icons/globe-emigrants.svg",
     tone: "positive",
-    href: "#",
+    href: "/emigrants",
   },
   {
     title: "ექსპატებისთვის",
     description: "სპეციალური პროდუქტები და სერვისები",
     icon: "/icons/plane.svg",
     tone: "notice",
-    href: "#",
+    href: "/expats",
   },
 ];
 
