@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import Button from "@/components/Button/Button";
 import { ConsumerPanel } from "./ConsumerMenu";
@@ -24,7 +25,10 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 export default function Header() {
-  const [activeId, setActiveId] = useState("personal");
+  const pathname = usePathname();
+  const [activeId, setActiveId] = useState(
+    SPACE_LINKS.some((link) => link.href === pathname) ? "space" : "personal",
+  );
   const [lang, setLang] = useState<"EN" | "KA">("EN");
   // Tablet/mobile menu (≤1279px, where the desktop nav no longer fits); not in the Figma design, kept in the site's existing styles
   const [mobileOpen, setMobileOpen] = useState(false);
